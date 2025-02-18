@@ -12,6 +12,11 @@ export const handleMessage = async (message) => {
     while (!done) {
         const completion = await generateCompletion(messages);
         newMessage = await createMessage('assistant', completion);
+        newMessage.content.split('\n').forEach(async (line) => {
+            if (line[0] == '/') {
+                console.log(line)
+            }
+        });
         done = true;
     }
 
