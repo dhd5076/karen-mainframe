@@ -8,10 +8,18 @@ export const createKnowledgeEntry = async (data) => {
   return entry;
 };
 
-export const getKnowledgeEntries = async () => {
-  await dbConnect();
-  const entries = await KnowledgeEntry.find({});
-  return entries;
+export const getKnowledgeEntries = async (query) => {
+    await dbConnect();
+    const filter = query
+      ? {
+          $or: [
+            { title: { $regex: query, $options: 'i' } },
+            { content: { $regex: query, $options: 'i' } },
+          ],
+        }
+      : {};
+    const entries = await KnowledgeEntry.find(filter);
+    return entries;
 };
 
 export const getKnowledgeEntryById = async (id) => {

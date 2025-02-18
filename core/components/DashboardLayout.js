@@ -33,25 +33,12 @@ const DashboardLayout = ({ children }) => {
         <div className="bg-zinc-900 p-3 pt-4 w-12 border-r border-zinc-700 flex-col justify-between flex">
           <div className="flex-col flex space-y-8 z-0">
             <span>
-              <HomeIcon/>
+                <Link href="/">
+                    <ChatBubbleOvalLeftIcon/>
+                </Link>
             </span>
             <span>
-              <MapPinIcon/>
-            </span>
-            <span>
-              <FilmIcon/>
-            </span>
-            <span>
-              <GlobeAltIcon/>
-            </span>
-            <span>
-              <UserIcon/>
-            </span>
-            <span>
-              <ChatBubbleOvalLeftIcon/>
-            </span>
-            <span>
-              <Link href="/klowledge">
+              <Link href="/knowledge">
                 <LightBulbIcon/>
               </Link>
             </span>

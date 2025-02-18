@@ -1,23 +1,25 @@
-import { createKnowledgeEntry, getKnowledgeEntries } from '../../../services/knowledgeService';
+
+import { handleMessage } from "../../../services/chatService";
+import { getMessages } from "../../../services/messageService";
 
 export default async function handler(req, res) {
   const { method } = req;
-  const { query } = req.query;
-
   switch (method) {
     case 'GET':
       try {
-        const entries = await getKnowledgeEntries(query);
-        res.status(200).json(entries);
+        const messages = await getMessages(); // Assuming you have a function to get messages
+        res.status(200).json(messages);
       } catch (error) {
+        console.log(error);
         res.status(500).json({ message: 'Internal server error' });
       }
-      break;
+      break; 
     case 'POST':
       try {
-        const entry = await createKnowledgeEntry(req.body);
-        res.status(201).json(entry);
+        const reply = await handleMessage(req.body.content);
+        res.status(201).json(reply);
       } catch (error) {
+        console.log(error)
         res.status(500).json({ message: 'Internal server error' });
       }
       break;

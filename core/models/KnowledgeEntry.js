@@ -1,10 +1,6 @@
 import mongoose from 'mongoose';
 
 const KnowledgeEntrySchema = new mongoose.Schema({
-    title: {
-        type: String,
-        required: true,
-    },
     content: {
         type: String,
         required: true,
