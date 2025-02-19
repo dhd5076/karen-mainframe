@@ -1,9 +1,9 @@
 import dbConnect from '../utils/dbConnect';
 import Message from '../models/Message';
 
-export const createMessage = async (role, content) => {
+export const createMessage = async (role, content, tool_calls, tool_call_id) => {
     await dbConnect();
-    const newMessage = new Message({ role, content});
+    const newMessage = new Message({ role, content, tool_calls, tool_call_id });
     await newMessage.save();
     return newMessage;
 };
@@ -28,6 +28,6 @@ export const deleteMessageById = async (id) => {
 
 export const getMessages = async (query = {}) => {
     await dbConnect();
-    const messages = await Message.find(query);
+    const messages = await Message.find(query).sort({ timestamp: 1 });
     return messages;
 };

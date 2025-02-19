@@ -1,9 +1,12 @@
 import dbConnect from '../utils/dbConnect';
 import KnowledgeEntry from '../models/KnowledgeEntry';
 
-export const createKnowledgeEntry = async (data) => {
+export const createKnowledgeEntry = async (content, tags) => {
   await dbConnect();
-  const entry = new KnowledgeEntry(data);
+  const entry = new KnowledgeEntry({
+    content: content,
+    tags: tags
+  });
   await entry.save();
   return entry;
 };

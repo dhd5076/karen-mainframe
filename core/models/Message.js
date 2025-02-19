@@ -11,6 +11,14 @@ const ChatMessageSchema = new Schema({
         type: String,
         required: true
     },
+    tool_calls: {
+        type: Object,
+        required: false
+    },
+    tool_call_id: {
+        type: String,
+        required: false
+    },
     timestamp: {
         type: Date,
         default: Date.now
